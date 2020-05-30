@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <style>
+        #state{
+            width: 50px;
+            height: 50px;
+        }
+    </style>
+</head>
+<body>
+   <div id="main">
+     <div id="cur">  
+       <div id="left">   
+       <h2 id="country"></h2>
+          <div id="img">
+               <img id="state">               
+               <p id="desc"></p>
+         </div>  
+                    
+            <p id="temp"></p>
+       </div>
+       
+       <div id="right">
+       <p id="date"></p>
+       <p>Wind:<span id="wind"></span>kph</p>
+       <p>Precip:<span id="precip"></span>mm</p>
+        <p>Preasure:<span id="pressure"></span>mb</p>
+       </div>
+       
+   </div>
+   </div>   
+   
+   <script type="text/javascript">
+       
+$(function(){ 
+    var d;
+    $.getJSON('http://api.weatherstack.com/current?access_key=4031b744118432c78eee4e66c58ae881&query=Kryvyy Rih',
+              function(data){
+    d=data;       
+    $('#country').html(d["request"]["query"])  
+     state.src=d.current.weather_icons;    
+      
+    $('#desc').html(d["current"]["weather_descriptions"])
+    $('#temp').html(d["current"]["temperature"])
+    $('#date').html(d["location"]["localtime"])
+    $('#wind').html(d["current"]["wind_speed"])
+    $('#precip').html(d["current"]["precip"])
+    $('#pressure').html(d["current"]["pressure"])
+        
+            
+    });
+});  
+       
+</script>
+</body>
+</html>
